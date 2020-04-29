@@ -15,8 +15,6 @@
 #define Idle -1
 #define DONE -2
 #define CLOSE -1
-#define P_CPU 0
-#define C_CPU 1
 #define Get_Time 334
 #define Printk 335
 #define Queue_Size 100
@@ -25,7 +23,7 @@
 int Num_prc;
 int head = 0;
 int tail = 0;
-int Queue[100];
+int Queue[Queue_Size];
 int scheduler(char Prc_name[Num_prc][64],int Prc_ReadyTime[Num_prc],int Prc_ExecTime[Num_prc],int policy);
 int InitPrc(int Process_ExecTime,char Prc_name[64]);
 int Find_Next_prc(int Prc_PID[Num_prc],char Prc_name[Num_prc][64],int Prc_ReadyTime[Num_prc],int Prc_ExecTime[Num_prc],int policy);
