@@ -21,7 +21,7 @@
 #define Printk 335
 #define Queue_Size 100
 #define Unit_Time() { volatile unsigned long i; for(i=0;i<1000000UL;i++); }
-//int COUNT = 0;
+
 int Num_prc;
 int head = 0;
 int tail = 0;
@@ -70,10 +70,6 @@ int main(int argc, char const *argv[])
 }
 int scheduler(char Prc_name[Num_prc][64],int Prc_ReadyTime[Num_prc],int Prc_ExecTime[Num_prc],int policy){
 		
-	//cpu_set_t Mask;
-	//CPU_ZERO(&Mask);
-	//CPU_SET(P_CPU,&Mask);
-	//sched_setaffinity(getpid(),sizeof(Mask),&Mask);	
 	int status = Idle;// -1 when scheduler idle
 	int Finish = 0;
 	int Prc_PID[Num_prc];
@@ -89,7 +85,7 @@ int scheduler(char Prc_name[Num_prc][64],int Prc_ReadyTime[Num_prc],int Prc_Exec
 		Queue[i] = -1;
 	}
 	sched_setscheduler(getpid(), SCHED_OTHER, &param);//指定高priority給scheduler
-	//printf("check1\n");
+
 	while(1){
 
 		if(status != Idle){//檢查正在run的process完成沒
